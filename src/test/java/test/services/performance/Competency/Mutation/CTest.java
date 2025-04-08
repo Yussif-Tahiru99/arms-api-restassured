@@ -2,6 +2,7 @@ package test.services.performance.Competency.Mutation;
 
 import ARMS_APITEST_RESTASSURED.api.requests.performance.Compentency.Mutation.CRequest;
 import ARMS_APITEST_RESTASSURED.api.responses.performance.Competency.Mutation.CResponse;
+import ARMS_APITEST_RESTASSURED.config.SchemaPaths;
 import ARMS_APITEST_RESTASSURED.models.performance.Competency.MutationPayload.CPayload;
 import com.github.javafaker.Faker;
 import dataprovider.performance.CompetencyDataProvider;
@@ -12,15 +13,14 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import static ARMS_APITEST_RESTASSURED.config.TestDataConstants.FIX_BASED;
 import static ARMS_APITEST_RESTASSURED.config.TestDataConstants.RESPONSE_TIME_THRESHOLD;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.lessThan;
 
 public class CTest {
     private Logger logger;
     private CPayload payload;
-    private Response response;
     private Faker faker;
 
     @BeforeMethod
@@ -50,6 +50,7 @@ public class CTest {
         payload.setJustificationCriteria(justificationCriteria);
         payload.setJustificationEnabled(justificationEnabled);
 
+
         if (minScore != null) {
             payload.setMinScore((Integer) minScore);
         }
@@ -61,7 +62,7 @@ public class CTest {
         logger.info("Request Payload: {}", payload);
 
         // Make the API call
-        response = CRequest.createCompetency(payload);
+        Response response = CRequest.createCompetency(payload);
         logger.info("Raw Response: {}", response.asString());
 
         // Basic validations
@@ -73,13 +74,21 @@ public class CTest {
         CResponse competencyResponse = response.as(CResponse.class);
         CResponse.CreateCompetency competency = competencyResponse.getData().getCreateCompetency();
 
-        // Field-level assertions
-        Assert.assertEquals(competency.getName(), uniqueName, "Name mismatch");
-        Assert.assertEquals(competency.getDescription(), description, "Description mismatch");
-        Assert.assertEquals(competency.isJustificationEnabled(), justificationEnabled, "JustificationEnabled mismatch");
-        Assert.assertEquals(competency.getStatus(), "INACTIVE", "Status mismatch");
-        Assert.assertFalse(competency.isArchived(), "Archived should be false");
-
+        if (expectedErrorMessage != null) {
+//            response.then().statusCode(HttpStatus.SC_BAD_REQUEST);
+            response.then()
+                    .assertThat()
+                    .body(matchesJsonSchemaInClasspath(SchemaPaths.Competency.CREATE_COMPETENCY_ERROR));
+            String errorMessage = competencyResponse.getErrors().get(0).getMessage();
+            Assert.assertTrue(errorMessage.contains(expectedErrorMessage));
+        } else {
+            // Field-level assertions
+            Assert.assertEquals(competency.getName(), uniqueName, "Name mismatch");
+            Assert.assertEquals(competency.getDescription(), description, "Description mismatch");
+            Assert.assertEquals(competency.isJustificationEnabled(), justificationEnabled, "JustificationEnabled mismatch");
+            Assert.assertEquals(competency.getStatus(), "INACTIVE", "Status mismatch");
+            Assert.assertFalse(competency.isArchived(), "Archived should be false");
+        }
         // Additional checks only if justification criteria is provided
         if (justificationCriteria != null && !justificationCriteria.equals(FIX_BASED)) {
             Assert.assertEquals(competency.getJustificationCriteria(), justificationCriteria, "JustificationCriteria mismatch");

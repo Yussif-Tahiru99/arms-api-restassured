@@ -1,10 +1,21 @@
 package ARMS_APITEST_RESTASSURED.api.responses.performance.Competency.Mutation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+
+import javax.xml.stream.Location;
+import java.util.List;
 
 @Data
 public class CResponse {
+    private List<Error> errors;
     private Data data;
+
+    @lombok.Data
+    @JsonIgnoreProperties(ignoreUnknown = true)  // This will ignore unknown fields like 'locations' and 'extensions'
+    public static class Error {
+        private String message;
+    }
 
     @lombok.Data
     public static class Data {
