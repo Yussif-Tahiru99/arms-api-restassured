@@ -1,0 +1,7 @@
+{
+  "errors": {
+    "INVALID_STATUS": "Invalid input for enum 'PerformanceStatus'",
+    "INVALID_JUSTIFICATION_CRITERIA": "Invalid input for enum 'JustificationCriteria'",
+    "UNAUTHORIZED_ACCESS": "Unauthorized access"
+  }
+}

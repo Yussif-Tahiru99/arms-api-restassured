@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "pattern": "^createPerformanceAccessLevel\\.data\\.name:.*$"
+          },
+          "locations": {
+            "type": "array"
+          },
+          "extensions": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": ["BAD_REQUEST"]
+              }
+            },
+            "required": ["classification"]
+          }
+        },
+        "required": ["message", "locations", "extensions"]
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "createPerformanceAccessLevel": {
+          "type": ["null"]
+        }
+      },
+      "required": ["createPerformanceAccessLevel"]
+    }
+  },
+  "required": ["errors", "data"]
+}

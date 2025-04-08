@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "getAllCompetencies": {
+          "type": "object",
+          "properties": {
+            "totalElements": {
+              "type": "number"
+            },
+            "totalPages": {
+              "type": "number"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "justificationCriteria": {
+                    "type": "string"
+                  },
+                  "justificationEnabled": {
+                    "type": "boolean"
+                  },
+                  "minScore": {
+                    "type": "number"
+                  },
+                  "maxScore": {
+                    "type": "number"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "justificationCriteria",
+                  "justificationEnabled",
+                  "status",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ]
+              }
+            }
+          },
+          "required": [
+            "totalElements",
+            "totalPages",
+            "data"
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

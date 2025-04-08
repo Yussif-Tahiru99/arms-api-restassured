@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "getAllCompetencies": {
+          "type": "object",
+          "properties": {
+            "totalElements": {
+              "type": "number"
+            },
+            "totalPages": {
+              "type": "number"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {},
+                  "justificationCriteria": {
+                    "type": "string"
+                  },
+                  "justificationEnabled": {
+                    "type": "boolean"
+                  },
+                  "minScore": {},
+                  "maxScore": {},
+                  "status": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "description",
+                  "justificationCriteria",
+                  "justificationEnabled",
+                  "minScore",
+                  "maxScore",
+                  "status",
+                  "createdAt",
+                  "updatedAt",
+                  "archived"
+                ]
+              }
+            }
+          },
+          "required": [
+            "totalElements",
+            "totalPages",
+            "data"
+          ]
+        }
+      },
+      "required": [
+        "getAllCompetencies"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

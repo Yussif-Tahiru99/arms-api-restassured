@@ -1,0 +1,38 @@
+{
+  "validAccessLevel": {
+    "name": "Default Access Level",
+    "description": "General description",
+    "permissions": ["EDIT_ACCESS_LEVEL", "IS_MANAGER"],
+    "users": ["1074", "1075"]
+  },
+  "existingAccessLevel": {
+    "name": "Existing Access Level",
+    "description": "General description",
+    "permissions": ["EDIT_ACCESS_LEVEL", "IS_MANAGER"],
+    "users": ["1077", "1075"]
+  },
+  "noNameAccessLevel": {
+    "name": " ",
+    "description": "General description",
+    "permissions": ["EDIT_ACCESS_LEVEL", "IS_MANAGER"],
+    "users": ["1074", "1075"]
+  },
+  "invalidNameAccessLevel": {
+    "name": "@Invalid!Access#Name$",
+    "description": "General description",
+    "permissions": ["EDIT_ACCESS_LEVEL", "IS_MANAGER"],
+    "users": ["1074", "1075"]
+  },
+  "noPermissionsAccessLevel": {
+    "name": "No Permissions Access Level",
+    "description": "General description",
+    "permissions": [],
+    "users": ["1074", "1075"]
+  },
+  "noUsersAccessLevel": {
+    "name": "No Users Access Level",
+    "description": "General description",
+    "permissions": ["EDIT_ACCESS_LEVEL", "IS_MANAGER"],
+    "users": []
+  }
+}

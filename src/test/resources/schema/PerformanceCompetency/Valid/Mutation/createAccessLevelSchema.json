@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "createPerformanceAccessLevel": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "description": { "type": ["string", "null"] },
+            "deleted": { "type": "boolean" },
+            "createdAt": { "type": "string" },
+            "updatedAt": { "type": "string" },
+            "permissions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "edit": { "type": "boolean" },
+                  "name": { "type": "string" },
+                  "view": { "type": "boolean" }
+                },
+                "required": ["edit", "name", "view"]
+              }
+            },
+            "users": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "firstName": { "type": "string" },
+                  "lastName": { "type": "string" },
+                  "fullName": { "type": "string" },
+                  "email": { "type": "string" },
+                  "profileImage": { "type": ["string", "null"] }
+                },
+                "required": ["id", "firstName", "lastName", "fullName", "email"]
+              }
+            },
+            "createdBy": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "fullName": { "type": "string" },
+                "email": { "type": "string" },
+                "profileImage": { "type": ["string", "null"] }
+              },
+              "required": ["id", "firstName", "lastName", "fullName", "email"]
+            }
+          },
+          "required": ["id", "name", "deleted", "createdAt", "updatedAt", "permissions", "users", "createdBy"]
+        }
+      },
+      "required": ["createPerformanceAccessLevel"]
+    }
+  },
+  "required": ["data"]
+}
